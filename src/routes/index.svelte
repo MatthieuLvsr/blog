@@ -53,6 +53,7 @@
       <h5>{post["title"]} - {post["date"]}</h5>
     {/each}
   </div>
+  <a href="http://localhost:3001/stream/video2.mp4">video</a>
 
   <!-- recent posts -->
   <h2 class="flex items-baseline gap-4 !mb-2">
