@@ -4,7 +4,8 @@
   export const load = async ({ fetch }) => {
     return {
       props: {
-        recentPosts: await fetch('/posts.json?limit=2').then((res) => res.json())
+        recentPosts: await fetch('/posts.json?limit=4').then((res) => res.json()),
+        allPosts: await fetch('/posts.json').then((res) => res.json())
       }
     }
   }
@@ -16,6 +17,8 @@
   import { name } from '$lib/info.js'
 
   export let recentPosts
+  export let allPosts
+  console.log(allPosts)
 </script>
 
 <svelte:head>
@@ -25,7 +28,7 @@
 <div class="flex flex-col flex-grow">
   <!-- replace with a bio about you, or something -->
   <div class="flex items-center justify-center text-xl h-40">
-    <ButtonLink size="large" href="https://github.com/mattjennings/sveltekit-blog-template">
+    <ButtonLink size="large" href="https://github.com/MatthieuLvsr">
       <slot slot="icon-start">
         <svg
           class="fill-black dark:fill-white h-6 w-6"
@@ -40,6 +43,15 @@
       View on GitHub
       <slot slot="icon-end" />
     </ButtonLink>
+  </div>
+
+  <h2>
+    Nombre total de posts : {allPosts.length}
+  </h2>
+  <div>
+    {#each allPosts as post}
+      <h5>{post["title"]} - {post["date"]}</h5>
+    {/each}
   </div>
 
   <!-- recent posts -->
